@@ -5,6 +5,7 @@ const UI = {
 UI.mode = 'events'
 
 UI.renderFooter = function(){
+  console.log("-> UI.renderFooter / mode = ", this.mode)
   const footer = document.querySelector('#shortcuts-footer')
   if (!footer) return
 
@@ -21,6 +22,8 @@ UI.renderFooter = function(){
     span.append(' ' + label)
     footer.appendChild(span)
   })
+
+  console.log("<- UI.renderFooter")
 }
 
 
