@@ -6,4 +6,4 @@ Pour gérer les évènemenciers d'histoire, à commencer par les séquenciers, d
 
 Dans le dossier, jouer `ruby ./app.rb`
 
-> Cela lance un serveur Sinatra avec l'application.
+> Cela lance un serveur Sinatra avec l'application.gpush 
