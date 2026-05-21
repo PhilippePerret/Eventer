@@ -1,0 +1,258 @@
+{
+  "personnages": [
+    {
+      "id": "pers1",
+      "badge": "CL",
+      "avatar": "",
+      "pseudo": "Claire",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    },
+    {
+      "id": "pers2",
+      "badge": "PA",
+      "avatar": "",
+      "pseudo": "Paul",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    },
+    {
+      "id": "pers3",
+      "badge": "NO",
+      "avatar": "",
+      "pseudo": "Nora",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    },
+    {
+      "id": "pers4",
+      "badge": "JU",
+      "avatar": "",
+      "pseudo": "Julien",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    },
+    {
+      "id": "pers5",
+      "badge": "EV",
+      "avatar": "",
+      "pseudo": "Eva",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    },
+    {
+      "id": "pers6",
+      "badge": "MA",
+      "avatar": "",
+      "pseudo": "Marc",
+      "patronyme": "",
+      "fonctions": [],
+      "file": ""
+    }
+  ],
+  "brins": [
+    {
+      "id": "brin1",
+      "nom": "Mensonge de Paul",
+      "badge": "MEN",
+      "type": "intrigue",
+      "persos": [
+        "pers1",
+        "pers2"
+      ],
+      "file": ""
+    },
+    {
+      "id": "brin2",
+      "nom": "Jalousie de Claire",
+      "badge": "JAL",
+      "type": "personnage",
+      "persos": [
+        "pers1",
+        "pers2",
+        "pers3"
+      ],
+      "file": ""
+    },
+    {
+      "id": "brin3",
+      "nom": "Manipulations de Nora",
+      "badge": "MAN",
+      "type": "intrigue",
+      "persos": [
+        "pers3"
+      ],
+      "file": ""
+    },
+    {
+      "id": "406169ac-c8da-4ea8-92ec-6e5f53c8f3c4",
+      "nom": "Nouveau brin de version 10",
+      "badge": "NOU",
+      "type": "accessoire",
+      "persos": [
+        "pers4"
+      ],
+      "file": ""
+    },
+    {
+      "id": "brin4",
+      "nom": "Disparition d’Eva",
+      "badge": "DIS",
+      "type": "autre",
+      "persos": [
+        "pers5",
+        "pers6"
+      ],
+      "file": ""
+    },
+    {
+      "id": "brin5",
+      "nom": "Amitié Nora / Julien",
+      "badge": "AMI",
+      "type": "relation",
+      "persos": [
+        "pers3",
+        "pers4"
+      ],
+      "file": ""
+    },
+    {
+      "id": "brin6",
+      "nom": "Violence rentrée",
+      "badge": "VIO",
+      "type": "thème",
+      "persos": [
+        "pers1",
+        "pers2",
+        "pers6"
+      ],
+      "file": ""
+    },
+    {
+      "id": "bdc9c982-5e35-4ae7-9e66-bf2ffde2a9b5",
+      "nom": "b",
+      "badge": "B",
+      "type": "",
+      "persos": [],
+      "file": ""
+    }
+  ],
+  "evenements": [
+    {
+      "id": "ev1",
+      "text": "Claire découvre un message effacé sur le téléphone de Paul.",
+      "brins": [
+        "brin1",
+        "brin2"
+      ],
+      "personnages": [
+        "pers1",
+        "pers2"
+      ],
+      "type": "action",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "ev2",
+      "text": "Nora ment à Julien sur l’endroit où elle était la veille.",
+      "brins": [
+        "brin3",
+        "brin5"
+      ],
+      "personnages": [
+        "pers3",
+        "pers4"
+      ],
+      "type": "dialogue",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "ev4",
+      "text": "Claire suit Paul jusque dans un café de banlieue.",
+      "brins": [
+        "brin1",
+        "brin2"
+      ],
+      "personnages": [
+        "pers1",
+        "pers2"
+      ],
+      "type": "action",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "113ea0c0-042e-47df-8500-598632a67e25",
+      "text": "Nouvel incident.",
+      "brins": [
+        "406169ac-c8da-4ea8-92ec-6e5f53c8f3c4"
+      ],
+      "personnages": [],
+      "type": "",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "ev3",
+      "text": "Marc affirme avoir vu Eva monter dans une voiture noire.",
+      "brins": [
+        "brin4"
+      ],
+      "personnages": [
+        "pers5",
+        "pers6"
+      ],
+      "type": "dialogue",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "999ad77c-ec6f-4cab-947c-2d8315958c66",
+      "text": "Un nouvel évènement. Modifié.",
+      "brins": [
+        "brin3",
+        "brin1"
+      ],
+      "personnages": [],
+      "type": "",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "ev5",
+      "text": "Nora pousse discrètement Claire à devenir paranoïaque.",
+      "brins": [
+        "brin2",
+        "brin3"
+      ],
+      "personnages": [
+        "pers1",
+        "pers3"
+      ],
+      "type": "dialogue",
+      "duration": null,
+      "file": ""
+    },
+    {
+      "id": "ev6",
+      "text": "Paul frappe le mur après le départ de Claire.",
+      "brins": [
+        "brin1",
+        "brin6"
+      ],
+      "personnages": [
+        "pers2"
+      ],
+      "type": "action",
+      "duration": null,
+      "file": ""
+    }
+  ]
+}
