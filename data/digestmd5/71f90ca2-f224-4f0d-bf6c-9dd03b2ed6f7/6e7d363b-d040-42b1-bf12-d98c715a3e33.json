@@ -1,0 +1,34 @@
+{
+  "title": "Le troisième event du prologue.",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "ef7ac4da-624b-419a-a651-7c4042acc9d9",
+      "text": "Premier eveent de troisième event prologue.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "86c7a2e6-da94-4092-b58d-7b0ccf50f94a",
+      "text": "Deuxième event de troisième event prologue.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

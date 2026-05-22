@@ -1,0 +1,218 @@
+{
+  "title": "Digest / MD5",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [
+    {
+      "id": "jf",
+      "badge": "JF",
+      "avatar": "👩🏻‍🦱",
+      "pseudo": "JF",
+      "patronyme": "",
+      "fonctions": [
+        "Protagoniste"
+      ],
+      "file": ""
+    },
+    {
+      "id": "sk",
+      "badge": "SK",
+      "avatar": "👨🏿‍🦱",
+      "pseudo": "SK",
+      "patronyme": "",
+      "fonctions": [
+        "Personnage principal"
+      ],
+      "file": ""
+    },
+    {
+      "id": "so",
+      "badge": "SO",
+      "avatar": "👧🏼",
+      "pseudo": "Sœur",
+      "patronyme": "",
+      "fonctions": [
+        "Adjuvant",
+        "Antagoniste"
+      ],
+      "file": ""
+    },
+    {
+      "id": "petitcopain",
+      "badge": "PC",
+      "avatar": "🧑🏻",
+      "pseudo": "P'tit ami",
+      "patronyme": "",
+      "fonctions": [
+        "Amoureux de JF"
+      ],
+      "file": ""
+    },
+    {
+      "id": "chef",
+      "badge": "CH",
+      "avatar": "👨🏻",
+      "pseudo": "CH",
+      "patronyme": "",
+      "fonctions": [
+        "Patron de JF"
+      ],
+      "file": ""
+    },
+    {
+      "id": "flics",
+      "badge": "FL",
+      "avatar": "👮🏻‍♀️👮‍♂️",
+      "pseudo": "Flics",
+      "patronyme": "",
+      "fonctions": [
+        "Collègues de JF"
+      ],
+      "file": ""
+    }
+  ],
+  "brins": [
+    {
+      "id": "intprin",
+      "nom": "Enquête sur la mort de SK",
+      "badge": "ENQ",
+      "type": "intrigue principale",
+      "color": "#e5d5b4",
+      "persos": [
+        "jf",
+        "sk"
+      ],
+      "file": ""
+    },
+    {
+      "id": "681e796a-90da-468b-8552-81395ab5f7f9",
+      "nom": "Phrases codées dans le roman",
+      "badge": "PHC",
+      "type": "thème",
+      "color": "#484848",
+      "persos": [],
+      "file": ""
+    },
+    {
+      "id": "viesk",
+      "nom": "La vie de SK",
+      "badge": "VSK",
+      "type": "personnage",
+      "color": "#c8d9a9",
+      "persos": [
+        "sk"
+      ],
+      "file": ""
+    },
+    {
+      "id": "intramour",
+      "nom": "Relation amoureuse JF et PC",
+      "badge": "AMO",
+      "type": "intrigue amoureuse",
+      "color": "#f9d3e0",
+      "persos": [
+        "jf",
+        "pc"
+      ],
+      "file": ""
+    },
+    {
+      "id": "meurtresk",
+      "nom": "Meurtre de SK",
+      "badge": "MEU",
+      "type": "intrigue",
+      "color": "#a9c8d9",
+      "persos": [
+        "sk"
+      ],
+      "file": ""
+    }
+  ],
+  "evenements": [
+    {
+      "id": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7",
+      "text": "PROLOGUE. La première phrase donne la solution… de façon codée.",
+      "brins": [
+        "681e796a-90da-468b-8552-81395ab5f7f9"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7"
+    },
+    {
+      "id": "bf066bc6-2de4-4de8-b551-5d4a04ffac3e",
+      "text": "JF se voit confier l'enquête par son supérieur",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "dialogue",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "04d9e301-73e6-45c8-882c-b28d36ee9c90",
+      "text": "JF commence à travailler sur les éléments du dossier",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "04d9e301-73e6-45c8-882c-b28d36ee9c90"
+    },
+    {
+      "id": "999ad77c-ec6f-4cab-947c-2d8315958c66",
+      "text": "PC apporte son soutien à JF",
+      "brins": [
+        "intramour"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "999ad77c-ec6f-4cab-947c-2d8315958c66"
+    },
+    {
+      "id": "bf066bc7-2de5-4de9-b551-5d4a04ffac3e",
+      "text": "Le fin mot de l'histoire.",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "dialogue",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "1c086b47-947b-486f-8a7e-3dd91a9e818a",
+      "text": "ÉPILOGUE. La dernier phrase codée donne aussi la solution.",
+      "brins": [
+        "681e796a-90da-468b-8552-81395ab5f7f9"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

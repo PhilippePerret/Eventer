@@ -11,7 +11,6 @@ class Event {
     this.type = data.type || ''
     this.duration = data.duration || null
     this.file = data.file || ''
-    this.child = data.child || ''
   }
 
   extractTags(shouldRender = true) {

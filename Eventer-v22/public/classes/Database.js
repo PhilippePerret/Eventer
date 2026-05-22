@@ -1,9 +1,6 @@
 class Database {
 
   constructor(data = {}) {
-    this.title = data.title || ''
-    this.project = data.project || ''
-
     this.options = {
       ...APP_CONFIG.defaultOptions,
       ...(data.options || {})
@@ -61,8 +58,6 @@ class Database {
 
   toJSON() {
     return {
-      title: this.title || '',
-
       options: {
         ...APP_CONFIG.defaultOptions,
         ...(this.options || {})
@@ -97,8 +92,7 @@ class Database {
         state: e.state || '---',
         type: e.type || '',
         duration: e.duration || null,
-        file: e.file || '',
-        child: e.child || ''
+        file: e.file || ''
       }))
     }
   }

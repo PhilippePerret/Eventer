@@ -187,6 +187,22 @@
       "file": ""
     },
     {
+      "id": "ev3",
+      "text": "Marc affirme avoir vu Eva monter dans une voiture noire.",
+      "brins": [
+        "brin4"
+      ],
+      "persos": [
+        "pers5",
+        "pers6"
+      ],
+      "checked": false,
+      "state": "---",
+      "type": "dialogue",
+      "duration": null,
+      "file": ""
+    },
+    {
       "id": "ev4",
       "text": "Claire suit Paul jusque dans un café de banlieue.",
       "brins": [
@@ -200,22 +216,6 @@
       "checked": false,
       "state": "---",
       "type": "action",
-      "duration": null,
-      "file": ""
-    },
-    {
-      "id": "ev3",
-      "text": "Marc affirme avoir vu Eva monter dans une voiture noire.",
-      "brins": [
-        "brin4"
-      ],
-      "persos": [
-        "pers5",
-        "pers6"
-      ],
-      "checked": false,
-      "state": "---",
-      "type": "dialogue",
       "duration": null,
       "file": ""
     },
@@ -239,7 +239,7 @@
       "brins": [],
       "persos": [],
       "checked": false,
-      "state": "---",
+      "state": "Non écrit",
       "type": "",
       "duration": null,
       "file": ""

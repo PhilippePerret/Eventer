@@ -1,0 +1,22 @@
+{
+  "title": "Le premier event du  prologue",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "762165a9-05ad-4348-be93-442d1f7c2237",
+      "text": "Le premier du premier.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

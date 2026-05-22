@@ -26,8 +26,7 @@ class EventsPanel extends Panel {
       state: '---',
       type: '',
       duration: null,
-      file: '',
-      child: ''
+      file: ''
     }, this.db)
 
     this.items.splice(this.selectedIndex + 1, 0, event)
@@ -162,21 +161,6 @@ class EventsPanel extends Panel {
     left.className = 'event-left'
     left.append(text)
 
-    if (event.child) {
-      const child = document.createElement('button')
-      child.type = 'button'
-      child.className = 'event-child-indicator'
-      child.textContent = '↘'
-      child.title = 'Ouvrir l’évènemencier enfant'
-      child.addEventListener('click', e => {
-        e.preventDefault()
-        e.stopPropagation()
-        this.stopEditing(true)
-        openChildEventer(event)
-      })
-      text.appendChild(child)
-    }
-
     body.append(left, meta)
     row.append(checkGutter, body)
 
@@ -210,20 +194,6 @@ class EventsPanel extends Panel {
     if (super.handleKeydown(e)) return true
 
     const event = this.currentItem()
-
-    if (e.key === 'ArrowRight') {
-      e.preventDefault()
-      this.stopEditing(true)
-      openChildEventer(event)
-      return true
-    }
-
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault()
-      this.stopEditing(true)
-      openParentEventer()
-      return true
-    }
 
     if (e.key === 'b') {
       e.preventDefault()

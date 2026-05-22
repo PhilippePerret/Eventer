@@ -1,0 +1,34 @@
+{
+  "title": "JF commence à travailler sur les éléments du dossier",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "7e5411c2-f75f-4d45-b60d-98530ad4cb62",
+      "text": "Le premier event de JF qui commence à travailler",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "7577debb-69b9-42d1-b5f2-136885e27522",
+      "text": "Le second event de JF travaille.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

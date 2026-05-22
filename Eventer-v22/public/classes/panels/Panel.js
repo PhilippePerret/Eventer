@@ -155,10 +155,6 @@ class Panel {
         this.renderItem(item, index)
       )
     })
-
-    if (!this.modal && typeof renderBreadcrumbs === 'function') {
-      renderBreadcrumbs()
-    }
   }
 
   renderItem(_item, _index) {

@@ -1,28 +1,11 @@
 
 window.APP_UI_MODES = {
-  projects: [
-    ['↑ ↓', 'sélectionner'],
-    ['Entrée', 'ouvrir']
-  ],
-  eventsRoot: [
+  events: [
     ['↑ ↓', 'sélectionner'],
     ['Entrée', 'éditer'],
     ['n', 'nouvel event'],
     ['b', 'brins'],
     ['p', 'persos event'],
-    ['→', 'Events de l’event'],
-    ['/', 'filtrer'],
-    ['o', 'options'],
-    ['Espace', 'cocher']
-  ],
-  eventsChild: [
-    ['↑ ↓', 'sélectionner'],
-    ['Entrée', 'éditer'],
-    ['n', 'nouvel event'],
-    ['b', 'brins'],
-    ['p', 'persos event'],
-    ['→', 'Events de l’event'],
-    ['←', 'parent'],
     ['/', 'filtrer'],
     ['o', 'options'],
     ['Espace', 'cocher']
