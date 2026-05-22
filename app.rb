@@ -147,6 +147,28 @@ helpers do
     child_parts.join('/')
   end
 
+
+
+  def child_has_real_events?(project, child_path)
+    data = load_eventer(project, child_path)
+    events = data['evenements'] || data[:evenements] || []
+    events.any? do |event|
+      text = event['text'] || event[:text] || ''
+      text.to_s.strip != ''
+    end
+  rescue StandardError
+    false
+  end
+
+  def annotate_child_flags(project, child_path, data)
+    events = data['evenements'] || data[:evenements] || []
+    events.each do |event|
+      child = (event['child'] || event[:child] || '').to_s
+      event['childHasEvents'] = !child.empty? && child_has_real_events?(project, child)
+    end
+    data
+  end
+
   def breadcrumbs_for(project, child_path = [])
     parts = safe_child_path(child_path.is_a?(Array) ? child_path.join('/') : child_path)
     crumbs = []
@@ -193,7 +215,7 @@ end
 get '/events' do
   project = safe_project_name(params[:project] || DEFAULT_PROJECT)
   child_path = safe_child_path(params[:path] || '')
-  data = load_eventer(project, child_path)
+  data = annotate_child_flags(project, child_path, load_eventer(project, child_path))
 
   data.merge(
     'project' => project,

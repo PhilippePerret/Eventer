@@ -1,27 +1,35 @@
 
 window.APP_UI_MODES = {
   projects: [
-    ['↑ ↓', 'sélectionner'],
+    ['↑ ↓', 'choisir'],
     ['Entrée', 'ouvrir']
   ],
   eventsRoot: [
-    ['↑ ↓', 'sélectionner'],
+    ['↑ ↓', 'choisir'],
     ['Entrée', 'éditer'],
     ['n', 'nouvel event'],
+    ['⌘C', 'copier'],
+    ['⌘X', 'couper'],
+    ['⌘V', 'coller avant'],
+    ['⌦', 'détruire'],
     ['b', 'brins'],
-    ['p', 'persos event'],
-    ['→', 'Events de l’event'],
+    ['p', 'personnages'],
+    ['→', 'Évènements'],
     ['/', 'filtrer'],
     ['o', 'options'],
     ['Espace', 'cocher']
   ],
   eventsChild: [
-    ['↑ ↓', 'sélectionner'],
+    ['↑ ↓', 'choisir'],
     ['Entrée', 'éditer'],
     ['n', 'nouvel event'],
+    ['⌘C', 'copier'],
+    ['⌘X', 'couper'],
+    ['⌘V', 'coller avant'],
+    ['⌦', 'détruire'],
     ['b', 'brins'],
-    ['p', 'persos event'],
-    ['→', 'Events de l’event'],
+    ['p', 'personnages'],
+    ['→', 'Évènements'],
     ['←', 'parent'],
     ['/', 'filtrer'],
     ['o', 'options'],
@@ -33,7 +41,7 @@ window.APP_UI_MODES = {
     ['Esc', 'annuler']
   ],
   panel: [
-    ['↑ ↓', 'sélectionner'],
+    ['↑ ↓', 'choisir'],
     ['Entrée', 'éditer'],
     ['n', 'créer'],
     ['Esc', 'fermer']

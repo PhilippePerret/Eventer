@@ -131,81 +131,33 @@
   ],
   "evenements": [
     {
-      "id": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7",
-      "text": "PROLOGUE. La première phrase donne la solution… de façon codée.",
-      "brins": [
-        "681e796a-90da-468b-8552-81395ab5f7f9"
-      ],
+      "id": "2c87f310-6283-44cd-97f8-a841a4276121",
+      "text": "Exposition",
+      "brins": [],
       "persos": [],
       "checked": false,
       "state": "---",
       "type": "",
       "duration": null,
       "file": "",
-      "child": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7"
+      "child": "2c87f310-6283-44cd-97f8-a841a4276121"
     },
     {
-      "id": "bf066bc6-2de4-4de8-b551-5d4a04ffac3e",
-      "text": "JF se voit confier l'enquête par son supérieur",
-      "brins": [
-        "intprin"
-      ],
-      "persos": [],
-      "checked": true,
-      "state": "---",
-      "type": "dialogue",
-      "duration": null,
-      "file": "",
-      "child": ""
-    },
-    {
-      "id": "04d9e301-73e6-45c8-882c-b28d36ee9c90",
-      "text": "JF commence à travailler sur les éléments du dossier",
-      "brins": [
-        "intprin"
-      ],
+      "id": "db046e2f-1720-4b17-bb4a-a16fd4a9b4d6",
+      "text": "Développement avant milieu",
+      "brins": [],
       "persos": [],
       "checked": false,
       "state": "---",
       "type": "",
       "duration": null,
       "file": "",
-      "child": "04d9e301-73e6-45c8-882c-b28d36ee9c90"
+      "child": "db046e2f-1720-4b17-bb4a-a16fd4a9b4d6"
     },
     {
-      "id": "999ad77c-ec6f-4cab-947c-2d8315958c66",
-      "text": "PC apporte son soutien à JF",
-      "brins": [
-        "intramour"
-      ],
-      "persos": [],
-      "checked": true,
-      "state": "---",
-      "type": "",
-      "duration": null,
-      "file": "",
-      "child": "999ad77c-ec6f-4cab-947c-2d8315958c66"
-    },
-    {
-      "id": "bf066bc7-2de5-4de9-b551-5d4a04ffac3e",
-      "text": "Le fin mot de l'histoire.",
-      "brins": [
-        "intprin"
-      ],
-      "persos": [],
-      "checked": true,
-      "state": "---",
-      "type": "dialogue",
-      "duration": null,
-      "file": "",
-      "child": ""
-    },
-    {
-      "id": "1c086b47-947b-486f-8a7e-3dd91a9e818a",
-      "text": "ÉPILOGUE. La dernier phrase codée donne aussi la solution.",
-      "brins": [
-        "681e796a-90da-468b-8552-81395ab5f7f9"
-      ],
+      "id": "489192cc-b5c2-4e37-aa62-8ac2c5ca8ec1",
+      "text": "Développement après milieu",
+      "brins": [],
       "persos": [],
       "checked": false,
       "state": "---",
@@ -213,6 +165,18 @@
       "duration": null,
       "file": "",
       "child": ""
+    },
+    {
+      "id": "37ce20fa-976c-4760-a6c2-150d6f1b87e2",
+      "text": "Dénouement",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "37ce20fa-976c-4760-a6c2-150d6f1b87e2"
     }
   ]
 }

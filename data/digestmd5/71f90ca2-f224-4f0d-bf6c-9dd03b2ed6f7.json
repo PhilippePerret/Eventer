@@ -5,42 +5,5 @@
   },
   "personnages": [],
   "brins": [],
-  "evenements": [
-    {
-      "id": "de34f31a-1ada-4fef-b05d-ad7a14ac1054",
-      "text": "Le premier event du  prologue",
-      "brins": [],
-      "persos": [],
-      "checked": false,
-      "state": "---",
-      "type": "",
-      "duration": null,
-      "file": "",
-      "child": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7/de34f31a-1ada-4fef-b05d-ad7a14ac1054"
-    },
-    {
-      "id": "d28554c4-e87e-45f7-ae29-b6951679d3fe",
-      "text": "Le second event du prologue",
-      "brins": [],
-      "persos": [],
-      "checked": false,
-      "state": "---",
-      "type": "",
-      "duration": null,
-      "file": "",
-      "child": ""
-    },
-    {
-      "id": "6e7d363b-d040-42b1-bf12-d98c715a3e33",
-      "text": "Le troisième event du prologue.",
-      "brins": [],
-      "persos": [],
-      "checked": false,
-      "state": "---",
-      "type": "",
-      "duration": null,
-      "file": "",
-      "child": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7/6e7d363b-d040-42b1-bf12-d98c715a3e33"
-    }
-  ]
+  "evenements": []
 }

@@ -162,7 +162,7 @@ class EventsPanel extends Panel {
     left.className = 'event-left'
     left.append(text)
 
-    if (event.child) {
+    if (event.child && event.childHasEvents) {
       const child = document.createElement('button')
       child.type = 'button'
       child.className = 'event-child-indicator'
@@ -203,10 +203,167 @@ class EventsPanel extends Panel {
     if (!event) return
     event.checked = !event.checked
     this.render()
+    if (window.UI && UI.renderFooter) UI.renderFooter()
     scheduleSave()
   }
 
+
+  checkedEvents() {
+    return this.items.filter(event => event.checked)
+  }
+
+  clipboardSourceEvents() {
+    const checked = this.checkedEvents()
+    if (checked.length) return checked
+
+    const current = this.currentItem()
+    return current ? [current] : []
+  }
+
+  brinToClipboardData(brin) {
+    return JSON.parse(JSON.stringify({
+      id: brin.id,
+      nom: brin.nom || '',
+      badge: brin.badge || '',
+      type: brin.type || '',
+      color: brin.color || '',
+      persos: brin.persos || [],
+      file: brin.file || ''
+    }))
+  }
+
+  persoToClipboardData(perso) {
+    return JSON.parse(JSON.stringify({
+      id: perso.id,
+      badge: perso.badge || '',
+      avatar: perso.avatar || '',
+      pseudo: perso.pseudo || '',
+      patronyme: perso.patronyme || '',
+      fonctions: perso.fonctions || [],
+      file: perso.file || ''
+    }))
+  }
+
+  eventToClipboardData(event) {
+    const brinIds = event.brins || []
+    const persoIds = new Set(event.persos || [])
+    const brins = []
+
+    brinIds.forEach(id => {
+      const brin = this.db.findBrin(id)
+      if (!brin) return
+      brins.push(this.brinToClipboardData(brin))
+      ;(brin.persos || []).forEach(persoId => persoIds.add(persoId))
+    })
+
+    const persos = Array.from(persoIds)
+      .map(id => this.db.findPerso(id))
+      .filter(Boolean)
+      .map(perso => this.persoToClipboardData(perso))
+
+    return JSON.parse(JSON.stringify({
+      event: {
+        id: event.id,
+        text: event.text || '',
+        brins: event.brins || [],
+        persos: event.persos || [],
+        checked: false,
+        state: event.state || '---',
+        type: event.type || '',
+        duration: event.duration || null,
+        file: event.file || '',
+        child: event.child || ''
+      },
+      brins,
+      persos
+    }))
+  }
+
+  ensureClipboardDataInCurrentDatabase(data) {
+    ;(data.persos || []).forEach(persoData => {
+      if (!this.db.findPerso(persoData.id)) {
+        this.db.personnages.push(new Perso(JSON.parse(JSON.stringify(persoData))))
+      }
+    })
+
+    ;(data.brins || []).forEach(brinData => {
+      if (!this.db.findBrin(brinData.id)) {
+        this.db.brins.push(new Brin(JSON.parse(JSON.stringify(brinData))))
+      }
+    })
+  }
+
+  cloneClipboardEvent(data) {
+    this.ensureClipboardDataInCurrentDatabase(data)
+
+    return new Event({
+      ...JSON.parse(JSON.stringify(data.event || data)),
+      id: crypto.randomUUID(),
+      checked: false
+    }, this.db)
+  }
+
+  copyEvents() {
+    const source = this.clipboardSourceEvents()
+    if (!source.length) return false
+
+    eventClipboard = {
+      type: 'events',
+      items: source.map(event => this.eventToClipboardData(event))
+    }
+
+    return true
+  }
+
+  cutEvents() {
+    const source = this.clipboardSourceEvents()
+    if (!source.length) return false
+
+    this.copyEvents()
+
+    const ids = new Set(source.map(event => event.id))
+    this.items = this.items.filter(event => !ids.has(event.id))
+    this.db.evenements = this.items
+    this.setSelectedIndex(Math.min(this.selectedIndex, this.items.length - 1))
+    this.render()
+    scheduleSave()
+    return true
+  }
+
+  pasteEventsBeforeCurrent() {
+    if (!eventClipboard || eventClipboard.type !== 'events' || !eventClipboard.items.length) return false
+
+    const pasted = eventClipboard.items.map(data => this.cloneClipboardEvent(data))
+    const index = this.items.length ? Math.max(0, this.selectedIndex) : 0
+
+    this.items.splice(index, 0, ...pasted)
+    this.db.evenements = this.items
+    this.selectedIndex = index
+    this.render()
+    scheduleSave()
+    return true
+  }
+
   handleKeydown(e) {
+    if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey) {
+      const key = e.key.toLowerCase()
+
+      if (key === 'c') {
+        e.preventDefault()
+        return this.copyEvents()
+      }
+
+      if (key === 'x') {
+        e.preventDefault()
+        return this.cutEvents()
+      }
+
+      if (key === 'v') {
+        e.preventDefault()
+        return this.pasteEventsBeforeCurrent()
+      }
+    }
+
     if (super.handleKeydown(e)) return true
 
     const event = this.currentItem()

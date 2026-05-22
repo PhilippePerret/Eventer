@@ -9,7 +9,18 @@ UI.renderFooter = function(){
 
   let mode = UI.mode || 'events'
   if (mode === 'events') mode = currentPath ? 'eventsChild' : 'eventsRoot'
-  const items = (window.APP_UI_MODES || {})[mode] || []
+  let items = [...((window.APP_UI_MODES || {})[mode] || [])]
+
+  if (mode === 'eventsRoot' || mode === 'eventsChild') {
+    const hasChecked = !!(eventsPanel && eventsPanel.checkedEvents && eventsPanel.checkedEvents().length)
+    items = items.map(([key, label]) => {
+      if (!hasChecked) return [key, label]
+      if (key === '⌘C') return [key, 'copier ✓']
+      if (key === '⌘X') return [key, 'couper ✓']
+      if (key === '⌘V') return [key, 'coller ✓ avant']
+      return [key, label]
+    })
+  }
 
   footer.innerHTML = ''
 
@@ -32,6 +43,7 @@ let currentProject = null
 let currentPath = ''
 let navigationStack = []
 let saveTimer = null
+let eventClipboard = null
 
 function pathParam() {
   return currentPath ? `&path=${encodeURIComponent(currentPath)}` : ''
@@ -207,6 +219,15 @@ async function openChildEventer(event) {
 
   eventsPanel.stopEditing(true)
 
+  const parentPath = currentPath
+
+  if (event.child) {
+    navigationStack.push({ path: parentPath, selectedEventId: event.id })
+    currentPath = event.child
+    await loadCurrentEventer()
+    return
+  }
+
   const response = await fetch(`/child?project=${encodeURIComponent(currentProject)}${pathParam()}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -219,7 +240,6 @@ async function openChildEventer(event) {
   const data = await response.json()
   if (!data.path) return
 
-  const parentPath = currentPath
   const parentDb = DB
 
   event.child = data.path

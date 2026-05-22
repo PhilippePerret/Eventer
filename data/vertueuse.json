@@ -1,9 +1,58 @@
 {
-  "personnages": [],
-  "brins": [],
-  "evenements": [],
   "title": "Vertueuses",
   "options": {
     "colorizeEventsWithFirstBrin": true
-  }
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "e32d46f3-404c-40e6-9c69-bef16c16faf7",
+      "text": "Exposition",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "e32d46f3-404c-40e6-9c69-bef16c16faf7"
+    },
+    {
+      "id": "3e1ae895-101b-4af7-ab56-741570f69c08",
+      "text": "Développement avant milieu",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "3e1ae895-101b-4af7-ab56-741570f69c08"
+    },
+    {
+      "id": "7c7e9a7c-1d35-418d-8d2c-cb2147fa81f7",
+      "text": "Développement après milieu",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "f02a0ff2-2eff-4df5-8cdf-6f6825cc9ef5"
+    },
+    {
+      "id": "1dce5994-4c58-4563-bf98-dbccb20f1d88",
+      "text": "Dénouement",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
 }

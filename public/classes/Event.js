@@ -12,6 +12,7 @@ class Event {
     this.duration = data.duration || null
     this.file = data.file || ''
     this.child = data.child || ''
+    this.childHasEvents = !!data.childHasEvents
   }
 
   extractTags(shouldRender = true) {
