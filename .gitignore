@@ -6,4 +6,4 @@ data/*.json
 
 !data/_legacy
 
-node_mdules
+tests/node_modules
