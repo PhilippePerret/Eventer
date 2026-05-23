@@ -1,0 +1,22 @@
+{
+  "title": "Développement après milieu",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "7331abfa-8c91-4421-95d7-202835352ae5",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

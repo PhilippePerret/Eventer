@@ -1,0 +1,22 @@
+{
+  "title": "Deuxième parent",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "c318dc5a-5790-476a-9d27-a19ea7d54ef4",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

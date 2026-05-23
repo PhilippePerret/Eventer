@@ -1,0 +1,46 @@
+{
+  "title": "Développement avant milieur",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "c98f8195-44c3-4551-bf0f-b0611537e1f6",
+      "text": "Camille repart en Espagne pour faire des analyses plus poussées.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "9ccf1afd-cd16-4cee-a4d0-cfdd8b6c4f14",
+      "text": "Camille retrouve Joachim.",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "76478ef7-8020-431c-a62d-256e8befcd9f",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

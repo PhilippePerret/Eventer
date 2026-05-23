@@ -7,12 +7,16 @@
   "brins": [],
   "evenements": [],
   "project": "digestmd5",
-  "path": "",
+  "path": "test-navigation-parent",
   "parentPath": "",
   "breadcrumbs": [
     {
-      "label": "digestmd5",
+      "label": "Digest / MD5",
       "path": ""
+    },
+    {
+      "label": "test-navigation-parent",
+      "path": "test-navigation-parent"
     }
   ]
 }

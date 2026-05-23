@@ -1,0 +1,34 @@
+{
+  "title": "Exposition",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "5d968f9d-3a0e-4efd-be63-e05cd8dcc9ef",
+      "text": "Prologue sur le béton/bitume sur terre",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "d0a02ae0-8f83-455d-bf14-8311307ce83e",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

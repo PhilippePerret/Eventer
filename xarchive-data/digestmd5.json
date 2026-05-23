@@ -1,0 +1,60 @@
+{
+  "title": "Digest / MD5",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "parent-a",
+      "text": "Premier parent",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "parent-b",
+      "text": "Deuxième parent",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "parent-b"
+    }
+  ]
+}child": "",
+      "childHasEvents": false
+    },
+    {
+      "id": "event-c",
+      "text": "C",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "",
+      "childHasEvents": false
+    }
+  ],
+  "project": "digestmd5",
+  "path": "",
+  "parentPath": "",
+  "breadcrumbs": [
+    {
+      "label": "Digest / MD5",
+      "path": ""
+    }
+  ]
+}

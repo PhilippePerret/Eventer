@@ -1,0 +1,22 @@
+{
+  "title": "Root event",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "4d065e8a-6a3c-4bfd-9949-d9f8aa727118",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Dénouement",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "023027f9-7f9f-47b3-baee-da61d8a414e5",
+      "text": "Le fin mot de l'histoire.",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "dialogue",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "5dac7911-9af8-4d8e-aa68-9d0ece6f160f",
+      "text": "ÉPILOGUE. La dernier phrase codée donne aussi la solution.",
+      "brins": [
+        "681e796a-90da-468b-8552-81395ab5f7f9"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
+    }
+  ]
+}

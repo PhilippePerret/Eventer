@@ -1,0 +1,52 @@
+{
+  "title": "Exposition",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "b21f52af-f95c-488e-b540-b552b49b61d1",
+      "text": "PROLOGUE. La première phrase donne la solution… de façon codée.",
+      "brins": [
+        "681e796a-90da-468b-8552-81395ab5f7f9"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "71f90ca2-f224-4f0d-bf6c-9dd03b2ed6f7"
+    },
+    {
+      "id": "8fdfb16c-dbf3-404e-9c1e-dce3bf9441fd",
+      "text": "JF se voit confier l'enquête par son supérieur",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "dialogue",
+      "duration": null,
+      "file": "",
+      "child": ""
+    },
+    {
+      "id": "8848d6bf-7a85-4162-80fd-0e9f2dc34a08",
+      "text": "JF commence à travailler sur les éléments du dossier",
+      "brins": [
+        "intprin"
+      ],
+      "persos": [],
+      "checked": true,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "04d9e301-73e6-45c8-882c-b28d36ee9c90"
+    }
+  ]
+}

@@ -1,5 +1,21 @@
 # Todo list
 
+* un script unique pour tout lancer (Web App Safari + sinatra)
+* la possibilité d’exporter, avec possibilité de définir les niveaux à exporter
+* Utilisation de l’eventer à mettre en avant : au final, il peut produire le texte même du roman ou du scénario : on fait l’event de premier niveau (expo, dév avant milieu etc.) dans l’event de second niveau, on fait les séquences, 3e niveau les scènes, 4e niveau les temps (beat) de scènes, 5e niveau (optionnel) les actions/dialogues et 6e et derniers niveau, le texte, où chaque chaque évènement est un paragraphe du texte
+
+  * il faudrait pouvoir définir que le projet est un scénario : gestion particulière du dernier niveau
+  * il faudrait pouvoir définir quel est le niveau « texte » (ou « texte final ») pour modifier le comportement de l’affichage :
+    * plusieurs lignes possibles (n’est-ce pas déjà le cas ?)
+    * mise en forme particulière quand c’est un scénario
+    * => il faut pouvoir définir le type du niveau texte, donc, peut-être que l’évènemencier soit de type « roman » ou « scénario » (=> dernier niveau)
+    * Ne pas pouvoir faire des évènemenciers des évènements (ou si, mais ce seront forcément des textes aussi)
+    * => si un paragraphe a un évènemencier, il « imprime » ses enfants, pas lui-même — en boucle
+* mise en forme
+
+  * remplacement des badges personnages par leur pseudo (donc recherche dans le texte de `\b[A-Z]{2}\b]` et remplacement.
+  * mise en forme markdown-like 
+  * => distinction entre texte en édition et texte imprimé
 * Faire l'évènemencier de départ avec 1 évènement/aide, 1 brin/aide, 1 personnage/aide
 * Pouvoir créer un nouveau projet (Cmd N)
   - retour au panneau d'accueil

@@ -1,0 +1,24 @@
+{
+  "title": "Développement avant milieu",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "2c0ab06d-76c2-4fd8-bbd0-74621de4ab7c",
+      "text": "PC apporte son soutien à JF",
+      "brins": [
+        "intramour"
+      ],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "999ad77c-ec6f-4cab-947c-2d8315958c66"
+    }
+  ]
+}
