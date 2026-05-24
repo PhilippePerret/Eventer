@@ -720,3 +720,19 @@ main {
 .breadcrumb-item.is-current {
   opacity: 1 !important;
 }
+
+
+.project-undo {
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.project-undo:hover {
+  color: var(--text);
+}

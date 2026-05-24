@@ -5,7 +5,21 @@
   },
   "personnages": [],
   "brins": [],
-  "evenements": [],
+  "evenements": [
+    {
+      "id": "3dc7d3af-b3f9-4974-80b5-69b4109841d4",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "",
+      "childHasEvents": false
+    }
+  ],
   "project": "digestmd5",
   "path": "",
   "parentPath": "",

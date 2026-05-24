@@ -1,0 +1,39 @@
+--- app.rb
++++ app.rb
+@@
+ def load_eventer(project, path = '')
+   fullpath = eventer_path(project, path)
+
+   unless File.exist?(fullpath)
+     data = default_data(project)
+     save_eventer(project, path, data)
+     return data
+   end
+
+   JSON.parse(File.read(fullpath))
+ end
+
+@@
+ def ensure_eventer_has_event(data)
++  return data if data['active'] == false
++
+   data['evenements'] ||= data[:evenements] || []
+   return data unless data['evenements'].empty?
+
+   data['evenements'] << default_event.transform_keys(&:to_s)
+   data
+ end
+
+@@
+ get '/events' do
+   project = safe_project_name(params[:project] || DEFAULT_PROJECT)
+   child_path = safe_child_path(params[:path] || '')
+
+   data = ensure_eventer_has_event(load_eventer(project, child_path))
+-
+-  if (data['evenements'] || []).length == 1 && (data['evenements'][0]['text'] || data['evenements'][0][:text]).to_s.empty?
++  if data['active'] != false &&
++     (data['evenements'] || []).length == 1 &&
++     (data['evenements'][0]['text'] || data['evenements'][0][:text]).to_s.empty?
+     save_eventer(project, child_path, data)
+   end
