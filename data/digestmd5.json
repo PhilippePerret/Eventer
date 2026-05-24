@@ -28,5 +28,6 @@
       "label": "digestmd5",
       "path": ""
     }
-  ]
+  ],
+  "active": false
 }

@@ -25,52 +25,46 @@ Received: true
   - main [ref=e2]:
     - heading "Choisir un évènemencier" [level=1] [ref=e3]
     - generic [ref=e4]:
-      - button "E2E __e2e__.json" [ref=e5]:
-        - generic [ref=e6]: E2E
-        - generic [ref=e7]: __e2e__.json
-      - button "digestmd5 digestmd5.json" [ref=e8]:
-        - generic [ref=e9]: digestmd5
-        - generic [ref=e10]: digestmd5.json
-      - button "project-1779598203project-1779598203 project-1779598203project-1779598203.json" [ref=e11]:
-        - generic [ref=e12]: project-1779598203project-1779598203
-        - generic [ref=e13]: project-1779598203project-1779598203.json
-      - button "projet-20260524-062259projet-20260524-062259 projet-20260524-062259projet-20260524-062259.json" [ref=e14]:
-        - generic [ref=e15]: projet-20260524-062259projet-20260524-062259
-        - generic [ref=e16]: projet-20260524-062259projet-20260524-062259.json
-      - button "projet-20260524-062633 projet-20260524-062633.json" [ref=e17]:
-        - generic [ref=e18]: projet-20260524-062633
-        - generic [ref=e19]: projet-20260524-062633.json
-      - button "projet-20260524-062633-2 projet-20260524-062633-2.json" [ref=e20]:
-        - generic [ref=e21]: projet-20260524-062633-2
-        - generic [ref=e22]: projet-20260524-062633-2.json
-      - button "projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e23]:
-        - generic [ref=e24]: projet-20260524-062633-2projet-20260524-062633-2
-        - generic [ref=e25]: projet-20260524-062633-2projet-20260524-062633-2.json
-      - button "projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e26]:
-        - generic [ref=e27]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2
-        - generic [ref=e28]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json
-      - button "project-1779598836 project-1779598836.json" [ref=e29]:
-        - generic [ref=e30]: project-1779598836
-        - generic [ref=e31]: project-1779598836.json
-    - button "Annuler" [ref=e32] [cursor=pointer]
-  - contentinfo "Raccourcis clavier" [ref=e33]:
-    - generic [ref=e34]:
-      - generic [ref=e35]: ↑ ↓
+      - button "projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e5]:
+        - generic [ref=e6]: projet-20260524-062633-2projet-20260524-062633-2
+        - generic [ref=e7]: projet-20260524-062633-2projet-20260524-062633-2.json
+      - button "projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e8]:
+        - generic [ref=e9]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2
+        - generic [ref=e10]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json
+      - button "project-1779598836 project-1779598836.json" [ref=e11]:
+        - generic [ref=e12]: project-1779598836
+        - generic [ref=e13]: project-1779598836.json
+      - button "project project.json" [ref=e14]:
+        - generic [ref=e15]: project
+        - generic [ref=e16]: project.json
+      - button "project-1779599194-d3657f project-1779599194-d3657f.json" [ref=e17]:
+        - generic [ref=e18]: project-1779599194-d3657f
+        - generic [ref=e19]: project-1779599194-d3657f.json
+      - button "project-1779604222 project-1779604222.json" [ref=e20]:
+        - generic [ref=e21]: project-1779604222
+        - generic [ref=e22]: project-1779604222.json
+      - button "project-1779604223 project-1779604223.json" [ref=e23]:
+        - generic [ref=e24]: project-1779604223
+        - generic [ref=e25]: project-1779604223.json
+    - button "Annuler" [ref=e26] [cursor=pointer]
+  - contentinfo "Raccourcis clavier" [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]: ↑ ↓
       - text: choisir
-    - generic [ref=e36]:
-      - generic [ref=e37]: Entrée
+    - generic [ref=e30]:
+      - generic [ref=e31]: Entrée
       - text: ouvrir
-    - generic [ref=e38]:
-      - generic [ref=e39]: "n"
+    - generic [ref=e32]:
+      - generic [ref=e33]: "n"
       - text: nouveau projet
-    - generic [ref=e40]:
-      - generic [ref=e41]: ⌘↑ ⌘↓
+    - generic [ref=e34]:
+      - generic [ref=e35]: ⌘↑ ⌘↓
       - text: classer
-    - generic [ref=e42]:
-      - generic [ref=e43]: ⌦
+    - generic [ref=e36]:
+      - generic [ref=e37]: ⌦
       - text: supprimer
-    - generic [ref=e44]:
-      - generic [ref=e45]: →
+    - generic [ref=e38]:
+      - generic [ref=e39]: →
       - text: éditer
 ```
 

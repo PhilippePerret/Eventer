@@ -83,8 +83,12 @@ helpers do
     unordered = (names - ordered).sort
 
     (ordered + unordered).select do |name|
-      data = load_eventer(name)
-      data['active'] != false
+      begin
+        data = load_eventer(name)
+        data['active'] != false
+      rescue StandardError
+        false
+      end
     end
   end
 
@@ -119,6 +123,7 @@ helpers do
   end
 
   def ensure_eventer_has_event(data)
+  return data if data['active'] == false || data[:active] == false
     data['evenements'] ||= data[:evenements] || []
     return data unless data['evenements'].empty?
 
@@ -139,7 +144,7 @@ helpers do
 
   def load_eventer(project, child_path = [])
     path = eventer_file(project, child_path)
-    return default_data unless File.exist?(path)
+    return default_data(project) unless File.exist?(path)
 
     JSON.parse(File.read(path))
   end
@@ -240,16 +245,29 @@ end
 
 
 
+
 post '/projects' do
+  content_type :json
+
   request.body.rewind
-  payload = JSON.parse(request.body.read)
+  payload = JSON.parse(request.body.read) rescue {}
 
   base = payload['name'].to_s.strip
   base = "project-#{Time.now.to_i}" if base.empty?
+  base = safe_project_name(base)
 
-  project = safe_project_name(base)
+  project = base
+  index = 1
+  while File.exist?(eventer_file(project, ''))
+    index += 1
+    project = safe_project_name("#{base}-#{index}")
+  end
 
-  save_eventer(project, [], default_data(project))
+  data = default_data(project)
+  data['active'] = true
+  data[:active] = true if data.respond_to?(:key?) && data.key?(:active)
+
+  save_eventer(project, '', data)
   FileUtils.mkdir_p(project_root_dir(project))
 
   state = load_state
@@ -260,34 +278,77 @@ post '/projects' do
 
   {
     status: 'ok',
-    project: project
+    project: {
+      id: project,
+      file: "#{project}.json",
+      title: data['title'].to_s.empty? ? project : data['title'].to_s
+    },
+    filename: "#{project}.json"
   }.to_json
 end
 
+
+
 delete '/projects/:project' do
+  content_type :json
+
   project = safe_project_name(params[:project])
 
-  data = load_eventer(project)
+  data = load_eventer(project, '')
   data['active'] = false
-  save_eventer(project, [], data)
 
-  { status: 'ok', project: project }.to_json
+  save_eventer(project, '', data)
+
+  { status: 'ok', project: project, active: false }.to_json
 end
 
-post '/projects/reorder' do
-  request.body.rewind
-  payload = JSON.parse(request.body.read)
 
+
+post '/projects/reorder' do
+  content_type :json
+
+  request.body.rewind
+  payload = JSON.parse(request.body.read) rescue {}
   order = payload['order'] || []
 
   state = load_state
-  state['projectOrder'] = order
+  state['projectOrder'] = order.map { |name| safe_project_name(name.to_s.sub(/\.json$/, '')) }
+  save_state(state)
+
+  { status: 'ok' }.to_json
+end
+
+post '/projects/order' do
+  content_type :json
+
+  request.body.rewind
+  payload = JSON.parse(request.body.read) rescue {}
+  order = payload['order'] || []
+
+  state = load_state
+  state['projectOrder'] = order.map { |name| safe_project_name(name.to_s.sub(/\.json$/, '')) }
   save_state(state)
 
   { status: 'ok' }.to_json
 end
 
 
+
+patch '/projects/:project' do
+  content_type :json
+
+  project = safe_project_name(params[:project])
+
+  request.body.rewind
+  payload = JSON.parse(request.body.read) rescue {}
+
+  data = load_eventer(project, '')
+  data['active'] = payload.key?('active') ? payload['active'] : data['active']
+
+  save_eventer(project, '', data)
+
+  { status: 'ok', project: project, active: data['active'] }.to_json
+end
 get '/events' do
   project = safe_project_name(params[:project] || DEFAULT_PROJECT)
   child_path = safe_child_path(params[:path] || '')
