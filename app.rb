@@ -87,7 +87,7 @@ helpers do
         data = load_eventer(name)
         data['active'] != false
       rescue StandardError
-        false
+        true
       end
     end
   end
@@ -246,6 +246,7 @@ end
 
 
 
+
 post '/projects' do
   content_type :json
 
@@ -254,20 +255,36 @@ post '/projects' do
 
   base = payload['name'].to_s.strip
   base = "project-#{Time.now.to_i}" if base.empty?
-  project = safe_project_name(base)
+  base = safe_project_name(base)
 
+  project = base
   index = 1
-  while File.exist?(eventer_path(project, ''))
+  while File.exist?(eventer_file(project, ''))
     index += 1
     project = safe_project_name("#{base}-#{index}")
   end
 
   data = default_data(project)
+  data['title'] = project
   data['active'] = true
-  data[:active] = true if data.respond_to?(:key?) && data.key?(:active)
+  data['evenements'] ||= []
+  if data['evenements'].empty?
+    data['evenements'] << {
+      'id' => SecureRandom.uuid,
+      'text' => '',
+      'brins' => [],
+      'persos' => [],
+      'checked' => false,
+      'state' => '---',
+      'type' => '',
+      'duration' => nil,
+      'file' => '',
+      'child' => ''
+    }
+  end
 
   save_eventer(project, '', data)
-  FileUtils.mkdir_p(project_root_dir(project)) if respond_to?(:project_root_dir)
+  FileUtils.mkdir_p(project_root_dir(project))
 
   state = load_state
   order = state['projectOrder'] || []
@@ -275,7 +292,30 @@ post '/projects' do
   state['projectOrder'] = order
   save_state(state)
 
-  { status: 'ok', project: project, filename: "#{project}.json" }.to_json
+  { status: 'ok', id: project, project: project, file: "#{project}.json", title: project }.to_json
+end
+
+
+
+
+
+
+patch '/projects/:project' do
+  content_type :json
+
+  project = safe_project_name(params[:project])
+
+  request.body.rewind
+  payload = JSON.parse(request.body.read) rescue {}
+
+  data = load_eventer(project, '')
+
+  data['title'] = payload['title'].to_s if payload.key?('title')
+  data['active'] = payload['active'] if payload.key?('active')
+
+  save_eventer(project, '', data)
+
+  { status: 'ok', project: project, active: data['active'] }.to_json
 end
 
 
@@ -287,12 +327,12 @@ delete '/projects/:project' do
 
   data = load_eventer(project, '')
   data['active'] = false
-  data[:active] = false if data.is_a?(Hash)
 
   save_eventer(project, '', data)
 
   { status: 'ok', project: project, active: false }.to_json
 end
+
 
 
 

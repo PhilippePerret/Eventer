@@ -6,6 +6,8 @@ export default defineConfig({
   fullyParallel: false,
   timeout: 15000,
   expect: { timeout: 5000 },
+  globalSetup: './global-setup.js',
+  globalTeardown: './global-teardown.js',
   use: {
     baseURL: 'http://127.0.0.1:4567',
     trace: 'on-first-retry'

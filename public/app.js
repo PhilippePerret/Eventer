@@ -145,13 +145,12 @@ async function createProject() {
   if (!response.ok) return
 
   const data = await response.json()
-  await renderProjects(true)
+  await renderProjects(false)
+
   const createdId = data.id || data.project
   const index = projectsList.findIndex(project => project.id === createdId)
-  if (index >= 0) {
-    selectedProjectIndex = index
-    renderProjectSelection()
-  }
+  selectedProjectIndex = index >= 0 ? index : Math.max(0, projectsList.length - 1)
+  renderProjectSelection()
 }
 
 let lastDeletedProject = null
@@ -169,7 +168,8 @@ async function deleteSelectedProject() {
   lastDeletedProject = project
   projectsList.splice(selectedProjectIndex, 1)
   if (selectedProjectIndex >= projectsList.length) selectedProjectIndex = Math.max(0, projectsList.length - 1)
-  await renderProjects(true)
+
+  renderProjectsFromList()
 
   const undo = document.querySelector('#project-undo-delete')
   if (undo) undo.classList.remove('hidden')

@@ -1,0 +1,36 @@
+{
+  "title": "",
+  "options": {
+    "colorizeEventsWithFirstBrin": true
+  },
+  "personnages": [],
+  "brins": [],
+  "evenements": [
+    {
+      "id": "77104c84-fa89-494d-8245-9fc521c436c3",
+      "text": "",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": "",
+      "childHasEvents": false
+    }
+  ],
+  "project": "digestmd5",
+  "path": "test-navigation-parent",
+  "parentPath": "",
+  "breadcrumbs": [
+    {
+      "label": "digestmd5",
+      "path": ""
+    },
+    {
+      "label": "test-navigation-parent",
+      "path": "test-navigation-parent"
+    }
+  ]
+}
