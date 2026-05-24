@@ -2,11 +2,11 @@
 window.APP_UI_MODES = {
   projects: [
     ['↑ ↓', 'choisir'],
-    ['Entrée', 'ouvrir'],
+    ['Entrée', 'renommer'],
     ['n', 'nouveau projet'],
     ['⌘↑ ⌘↓', 'classer'],
     ['⌦', 'supprimer'],
-    ['→', 'éditer']
+    ['→', 'ouvrir']
   ],
   eventsRoot: [
     ['↑ ↓', 'choisir'],

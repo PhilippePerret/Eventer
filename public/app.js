@@ -36,8 +36,7 @@ UI.renderFooter = function(){
 
 let DB
 let eventsPanel
-let projectsList = []
-let selectedProjectIndex = 0
+let projectsPanel = null
 let currentBreadcrumbs = []
 let currentProject = null
 let currentPath = ''
@@ -53,260 +52,17 @@ async function boot() {
   await renderProjects()
 }
 
-async function renderProjects(preserveSelection = false) {
-  UI.panel = null
-  UI.mode = 'projects'
-  UI.renderFooter()
-
-  const main = document.querySelector('#events')
-  main.innerHTML = ''
-  main.classList.add('project-screen')
-
-  const previousId = preserveSelection ? projectsList[selectedProjectIndex]?.id : null
-
-  const response = await fetch('/projects')
-  const projects = await response.json()
-  projectsList = projects
-
-  if (previousId) {
-    selectedProjectIndex = Math.max(0, projectsList.findIndex(project => project.id === previousId))
-  } else {
-    selectedProjectIndex = 0
-  }
-
-  if (selectedProjectIndex < 0) selectedProjectIndex = 0
-  if (selectedProjectIndex >= projectsList.length) selectedProjectIndex = Math.max(0, projectsList.length - 1)
-
-  const title = document.createElement('h1')
-  title.className = 'project-title'
-  title.textContent = 'Choisir un évènemencier'
-
-  const list = document.createElement('div')
-  list.className = 'project-list'
-
-  projects.forEach((project, index) => {
-    const button = document.createElement('button')
-    button.type = 'button'
-    button.className = 'project-item'
-    if (index === selectedProjectIndex) button.classList.add('selected')
-    button.dataset.project = project.id
-
-    const name = document.createElement('span')
-    name.className = 'project-name'
-    name.textContent = project.title || project.id
-
-    const file = document.createElement('span')
-    file.className = 'project-file'
-    file.textContent = project.file
-
-    button.append(name, ' ', file)
-    button.addEventListener('click', () => {
-      selectedProjectIndex = index
-      renderProjectSelection()
-      loadProject(project.id)
-    })
-    list.appendChild(button)
+async function renderProjects() {
+  projectsPanel = new ProjectsPanel({
+    selectedIndex: projectsPanel ? projectsPanel.selectedIndex : 0
   })
 
-  const undo = document.createElement('button')
-  undo.type = 'button'
-  undo.id = 'project-undo-delete'
-  undo.className = 'project-undo hidden'
-  undo.textContent = 'Annuler'
-  undo.addEventListener('click', restoreDeletedProject)
-
-  main.append(title, list, undo)
-}
-
-function renderProjectSelection() {
-  document.querySelectorAll('.project-item').forEach((button, index) => {
-    button.classList.toggle('selected', index === selectedProjectIndex)
-  })
-}
-
-function moveProjectSelection(delta) {
-  if (!projectsList.length) return
-  selectedProjectIndex = Math.max(0, Math.min(projectsList.length - 1, selectedProjectIndex + delta))
-  renderProjectSelection()
+  await projectsPanel.reload()
+  projectsPanel.open()
 }
 
 function openSelectedProject() {
-  const project = projectsList[selectedProjectIndex]
-  if (project) loadProject(project.id)
-}
-
-async function createProject() {
-  const response = await fetch('/projects', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({})
-  })
-
-  if (!response.ok) return
-
-  const data = await response.json()
-  await renderProjects(true)
-  const createdId = data.id || data.project
-  const index = projectsList.findIndex(project => project.id === createdId)
-  if (index >= 0) {
-    selectedProjectIndex = index
-    renderProjectSelection()
-  }
-}
-
-let lastDeletedProject = null
-
-async function deleteSelectedProject() {
-  const project = projectsList[selectedProjectIndex]
-  if (!project) return
-
-  const response = await fetch(`/projects/${encodeURIComponent(project.id)}`, {
-    method: 'DELETE'
-  })
-
-  if (!response.ok) return
-
-  lastDeletedProject = project
-  projectsList.splice(selectedProjectIndex, 1)
-  if (selectedProjectIndex >= projectsList.length) selectedProjectIndex = Math.max(0, projectsList.length - 1)
-  await renderProjects(true)
-
-  const undo = document.querySelector('#project-undo-delete')
-  if (undo) undo.classList.remove('hidden')
-}
-
-async function restoreDeletedProject() {
-  if (!lastDeletedProject) return
-
-  await fetch(`/projects/${encodeURIComponent(lastDeletedProject.id)}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ active: true })
-  })
-
-  const restoredId = lastDeletedProject.id
-  lastDeletedProject = null
-  await renderProjects(true)
-
-  const index = projectsList.findIndex(project => project.id === restoredId)
-  if (index >= 0) {
-    selectedProjectIndex = index
-    renderProjectSelection()
-  }
-}
-
-async function persistProjectOrder() {
-  await fetch('/projects/order', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ order: projectsList.map(project => project.id) })
-  })
-}
-
-async function moveProjectInOrder(delta) {
-  if (!projectsList.length) return
-
-  const nextIndex = selectedProjectIndex + delta
-  if (nextIndex < 0 || nextIndex >= projectsList.length) return
-
-  const [project] = projectsList.splice(selectedProjectIndex, 1)
-  projectsList.splice(nextIndex, 0, project)
-  selectedProjectIndex = nextIndex
-
-  await persistProjectOrder()
-  renderProjectsFromList()
-}
-
-function renderProjectsFromList() {
-  const list = document.querySelector('.project-list')
-  if (!list) return
-
-  list.innerHTML = ''
-
-  projectsList.forEach((project, index) => {
-    const button = document.createElement('button')
-    button.type = 'button'
-    button.className = 'project-item'
-    if (index === selectedProjectIndex) button.classList.add('selected')
-    button.dataset.project = project.id
-
-    const name = document.createElement('span')
-    name.className = 'project-name'
-    name.textContent = project.title || project.id
-
-    const file = document.createElement('span')
-    file.className = 'project-file'
-    file.textContent = project.file
-
-    button.append(name, ' ', file)
-    button.addEventListener('click', () => {
-      selectedProjectIndex = index
-      renderProjectSelection()
-      loadProject(project.id)
-    })
-    list.appendChild(button)
-  })
-}
-
-function editSelectedProject() {
-  const project = projectsList[selectedProjectIndex]
-  if (!project) return
-
-  const button = document.querySelectorAll('.project-item')[selectedProjectIndex]
-  if (!button) return
-
-  const name = button.querySelector('.project-name')
-  if (!name) return
-
-  const previous = name.textContent
-  name.contentEditable = 'true'
-  name.focus()
-
-  const selection = window.getSelection()
-  const range = document.createRange()
-  range.selectNodeContents(name)
-  selection.removeAllRanges()
-  selection.addRange(range)
-
-  const finish = async (confirm) => {
-    const title = name.textContent.trim()
-    name.contentEditable = 'false'
-    name.removeEventListener('keydown', onKeydown)
-    name.removeEventListener('blur', onBlur)
-
-    if (!confirm || !title || title === previous) {
-      name.textContent = previous
-      return
-    }
-
-    const response = await fetch(`/projects/${encodeURIComponent(project.id)}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title })
-    })
-
-    if (response.ok) {
-      project.title = title
-      name.textContent = title
-    } else {
-      name.textContent = previous
-    }
-  }
-
-  const onKeydown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      finish(true)
-    } else if (event.key === 'Escape') {
-      event.preventDefault()
-      finish(false)
-    }
-  }
-
-  const onBlur = () => finish(true)
-
-  name.addEventListener('keydown', onKeydown)
-  name.addEventListener('blur', onBlur)
+  if (projectsPanel) projectsPanel.openSelectedProject()
 }
 
 function shortCrumbLabel(label, max = 34) {
@@ -473,14 +229,7 @@ async function save() {
 
 document.addEventListener('keydown', e => {
   if (UI.mode === 'projects') {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'ArrowUp') { e.preventDefault(); moveProjectInOrder(-1); return }
-    if ((e.metaKey || e.ctrlKey) && e.key === 'ArrowDown') { e.preventDefault(); moveProjectInOrder(1); return }
-    if (e.key === 'ArrowUp') { e.preventDefault(); moveProjectSelection(-1); return }
-    if (e.key === 'ArrowDown') { e.preventDefault(); moveProjectSelection(1); return }
-    if (e.key === 'Enter') { e.preventDefault(); editSelectedProject(); return }
-    if (e.key === 'ArrowRight') { e.preventDefault(); openSelectedProject(); return }
-    if (e.key === 'n') { e.preventDefault(); createProject(); return }
-    if (e.key === 'Delete') { e.preventDefault(); deleteSelectedProject(); return }
+    if (projectsPanel) projectsPanel.handleKeydown(e)
     return
   }
 
