@@ -12,10 +12,14 @@
 # Error details
 
 ```
-Error: expect(received).toBe(expected) // Object.is equality
+Test timeout of 15000ms exceeded.
+```
 
-Expected: false
-Received: true
+```
+Error: locator.textContent: Test timeout of 15000ms exceeded.
+Call log:
+  - waiting for locator('.project-item').first()
+
 ```
 
 # Page snapshot
@@ -24,47 +28,24 @@ Received: true
 - generic [active] [ref=e1]:
   - main [ref=e2]:
     - heading "Choisir un évènemencier" [level=1] [ref=e3]
-    - generic [ref=e4]:
-      - button "projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e5]:
-        - generic [ref=e6]: projet-20260524-062633-2projet-20260524-062633-2
-        - generic [ref=e7]: projet-20260524-062633-2projet-20260524-062633-2.json
-      - button "projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e8]:
-        - generic [ref=e9]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2
-        - generic [ref=e10]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json
-      - button "project-1779598836 project-1779598836.json" [ref=e11]:
-        - generic [ref=e12]: project-1779598836
-        - generic [ref=e13]: project-1779598836.json
-      - button "project project.json" [ref=e14]:
-        - generic [ref=e15]: project
-        - generic [ref=e16]: project.json
-      - button "project-1779599194-d3657f project-1779599194-d3657f.json" [ref=e17]:
-        - generic [ref=e18]: project-1779599194-d3657f
-        - generic [ref=e19]: project-1779599194-d3657f.json
-      - button "project-1779604222 project-1779604222.json" [ref=e20]:
-        - generic [ref=e21]: project-1779604222
-        - generic [ref=e22]: project-1779604222.json
-      - button "project-1779604223 project-1779604223.json" [ref=e23]:
-        - generic [ref=e24]: project-1779604223
-        - generic [ref=e25]: project-1779604223.json
-    - button "Annuler" [ref=e26] [cursor=pointer]
-  - contentinfo "Raccourcis clavier" [ref=e27]:
-    - generic [ref=e28]:
-      - generic [ref=e29]: ↑ ↓
+  - contentinfo "Raccourcis clavier" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: ↑ ↓
       - text: choisir
-    - generic [ref=e30]:
-      - generic [ref=e31]: Entrée
+    - generic [ref=e7]:
+      - generic [ref=e8]: Entrée
       - text: ouvrir
-    - generic [ref=e32]:
-      - generic [ref=e33]: "n"
+    - generic [ref=e9]:
+      - generic [ref=e10]: "n"
       - text: nouveau projet
-    - generic [ref=e34]:
-      - generic [ref=e35]: ⌘↑ ⌘↓
+    - generic [ref=e11]:
+      - generic [ref=e12]: ⌘↑ ⌘↓
       - text: classer
-    - generic [ref=e36]:
-      - generic [ref=e37]: ⌦
+    - generic [ref=e13]:
+      - generic [ref=e14]: ⌦
       - text: supprimer
-    - generic [ref=e38]:
-      - generic [ref=e39]: →
+    - generic [ref=e15]:
+      - generic [ref=e16]: →
       - text: éditer
 ```
 
@@ -79,7 +60,8 @@ Received: true
   6  |   const projects = page.locator('.project-item')
   7  |   const countBefore = await projects.count()
   8  | 
-  9  |   const selectedText = (await projects.first().textContent()) || ''
+> 9  |   const selectedText = (await projects.first().textContent()) || ''
+     |                                                ^ Error: locator.textContent: Test timeout of 15000ms exceeded.
   10 |   const projectName = selectedText.match(/[\w.-]+\.json/)?.[0]
   11 |   expect(projectName).toBeTruthy()
   12 | 
@@ -91,8 +73,7 @@ Received: true
   18 |   expect(response.ok()).toBeTruthy()
   19 | 
   20 |   const data = await response.json()
-> 21 |   expect(data.active).toBe(false)
-     |                       ^ Error: expect(received).toBe(expected) // Object.is equality
+  21 |   expect(data.active).toBe(false)
   22 | })
   23 | 
 ```
