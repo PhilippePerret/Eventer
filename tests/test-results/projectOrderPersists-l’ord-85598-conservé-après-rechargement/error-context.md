@@ -15,20 +15,20 @@
 Error: expect(locator).toContainText(expected) failed
 
 Locator: locator('.project-item').first()
-Expected substring: "__state____state__.json"
-Received string:    "E2E__e2e__.json"
+Expected substring: "project-1779598203project-1779598203.json"
+Received string:    "project-1779597633project-1779597633.json"
 Timeout: 5000ms
 
 Call log:
   - Expect "toContainText" with timeout 5000ms
   - waiting for locator('.project-item').first()
-    14 × locator resolved to <button type="button" data-project="__e2e__" class="project-item selected">…</button>
-       - unexpected value "E2E__e2e__.json"
+    14 × locator resolved to <button type="button" class="project-item selected" data-project="project-1779597633">…</button>
+       - unexpected value "project-1779597633project-1779597633.json"
 
 ```
 
 ```yaml
-- button "E2E __e2e__.json"
+- button "project-1779597633 project-1779597633.json"
 ```
 
 # Test source
