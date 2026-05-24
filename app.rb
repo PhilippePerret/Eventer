@@ -246,7 +246,6 @@ end
 
 
 
-
 post '/projects' do
   content_type :json
 
@@ -255,9 +254,8 @@ post '/projects' do
 
   base = payload['name'].to_s.strip
   base = "project-#{Time.now.to_i}" if base.empty?
-  base = safe_project_name(base)
+  project = safe_project_name(base)
 
-  project = base
   index = 1
   while File.exist?(eventer_file(project, ''))
     index += 1
@@ -265,26 +263,11 @@ post '/projects' do
   end
 
   data = default_data(project)
-  data['title'] = project
   data['active'] = true
-  data['evenements'] ||= []
-  if data['evenements'].empty?
-    data['evenements'] << {
-      'id' => SecureRandom.uuid,
-      'text' => '',
-      'brins' => [],
-      'persos' => [],
-      'checked' => false,
-      'state' => '---',
-      'type' => '',
-      'duration' => nil,
-      'file' => '',
-      'child' => ''
-    }
-  end
+  data[:active] = true if data.respond_to?(:key?) && data.key?(:active)
 
   save_eventer(project, '', data)
-  FileUtils.mkdir_p(project_root_dir(project))
+  FileUtils.mkdir_p(project_root_dir(project)) if respond_to?(:project_root_dir)
 
   state = load_state
   order = state['projectOrder'] || []
@@ -292,9 +275,8 @@ post '/projects' do
   state['projectOrder'] = order
   save_state(state)
 
-  { status: 'ok', id: project, project: project, file: "#{project}.json", title: project }.to_json
+  { status: 'ok', project: { id: project, file: "#{project}.json", title: project }, filename: "#{project}.json" }.to_json
 end
-
 
 
 
