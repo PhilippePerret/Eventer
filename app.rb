@@ -7,8 +7,22 @@ set :public_folder, 'public'
 
 DATA_DIR = File.expand_path('data', __dir__)
 DEFAULT_PROJECT = 'digestmd5'
+STATE_FILE = File.join(DATA_DIR, '__state__.json')
 
 helpers do
+
+  def load_state
+    return { 'projectOrder' => [] } unless File.exist?(STATE_FILE)
+
+    JSON.parse(File.read(STATE_FILE))
+  rescue StandardError
+    { 'projectOrder' => [] }
+  end
+
+  def save_state(state)
+    FileUtils.mkdir_p(DATA_DIR)
+    File.write(STATE_FILE, JSON.pretty_generate(state))
+  end
   def safe_id(value, label = 'Identifiant invalide')
     id = value.to_s.strip
     halt 400, { error: label }.to_json unless id.match?(/\A[a-zA-Z0-9_-]+\z/)
@@ -57,15 +71,27 @@ helpers do
   def project_names
     return [] unless Dir.exist?(DATA_DIR)
 
-    Dir.children(DATA_DIR)
-       .select { |entry| entry.end_with?('.json') && File.file?(File.join(DATA_DIR, entry)) }
-       .map { |entry| File.basename(entry, '.json') }
-       .sort
+    names = Dir.children(DATA_DIR)
+               .select { |entry| entry.end_with?('.json') && File.file?(File.join(DATA_DIR, entry)) }
+               .reject { |entry| entry == '__state__.json' }
+               .map { |entry| File.basename(entry, '.json') }
+
+    state = load_state
+    order = state['projectOrder'] || []
+
+    ordered = order.select { |name| names.include?(name) }
+    unordered = (names - ordered).sort
+
+    (ordered + unordered).select do |name|
+      data = load_eventer(name)
+      data['active'] != false
+    end
   end
 
   def default_data(title = '')
     {
       title: title,
+      active: true,
       options: { colorizeEventsWithFirstBrin: true },
       personnages: [],
       brins: [],
@@ -211,6 +237,56 @@ get '/projects' do
 
   projects.to_json
 end
+
+
+
+post '/projects' do
+  request.body.rewind
+  payload = JSON.parse(request.body.read)
+
+  base = payload['name'].to_s.strip
+  base = "project-#{Time.now.to_i}" if base.empty?
+
+  project = safe_project_name(base)
+
+  save_eventer(project, [], default_data(project))
+  FileUtils.mkdir_p(project_root_dir(project))
+
+  state = load_state
+  order = state['projectOrder'] || []
+  order << project unless order.include?(project)
+  state['projectOrder'] = order
+  save_state(state)
+
+  {
+    status: 'ok',
+    project: project
+  }.to_json
+end
+
+delete '/projects/:project' do
+  project = safe_project_name(params[:project])
+
+  data = load_eventer(project)
+  data['active'] = false
+  save_eventer(project, [], data)
+
+  { status: 'ok', project: project }.to_json
+end
+
+post '/projects/reorder' do
+  request.body.rewind
+  payload = JSON.parse(request.body.read)
+
+  order = payload['order'] || []
+
+  state = load_state
+  state['projectOrder'] = order
+  save_state(state)
+
+  { status: 'ok' }.to_json
+end
+
 
 get '/events' do
   project = safe_project_name(params[:project] || DEFAULT_PROJECT)
