@@ -18,7 +18,7 @@ test('ouvrir un évènemencier enfant crée/navigue, revient au parent, et n’a
 
     await expect(page.locator('.event')).toHaveCount(1)
     await expect(page.locator('.eventer-breadcrumbs')).toContainText('E2E')
-    await expect(page.locator('.eventer-breadcrumbs')).toContainText('test-child-navigation-parent')
+    await expect(page.locator('.eventer-breadcrumbs')).toContainText('Parent pour navigation enfant')
     await expect(page.locator('#shortcuts-footer')).toContainText('←')
 
     await page.keyboard.press('ArrowLeft')
