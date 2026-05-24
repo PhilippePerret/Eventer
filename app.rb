@@ -87,7 +87,7 @@ helpers do
         data = load_eventer(name)
         data['active'] != false
       rescue StandardError
-        true
+        false
       end
     end
   end
@@ -281,49 +281,51 @@ end
 
 
 
-
 patch '/projects/:project' do
   content_type :json
 
   project = safe_project_name(params[:project])
-
   request.body.rewind
   payload = JSON.parse(request.body.read) rescue {}
 
   data = load_eventer(project, '')
 
-  data['title'] = payload['title'].to_s if payload.key?('title')
-  data['active'] = payload['active'] if payload.key?('active')
+  if payload.key?('active')
+    data['active'] = payload['active'] == true
+  end
+
+  if payload.key?('title')
+    data['title'] = payload['title'].to_s
+  end
 
   save_eventer(project, '', data)
 
-  { status: 'ok', project: project, active: data['active'] }.to_json
+  {
+    status: 'ok',
+    project: {
+      id: project,
+      file: "#{project}.json",
+      title: data['title'].to_s.empty? ? project : data['title'].to_s,
+      active: data['active'] != false
+    }
+  }.to_json
 end
-
-
 
 delete '/projects/:project' do
   content_type :json
 
   project = safe_project_name(params[:project])
+  path = project_root_file(project)
 
-  data = load_eventer(project, '')
-  halt 404, { error: 'Projet introuvable' }.to_json if data.nil?
+  halt 404, { error: 'Projet introuvable' }.to_json unless File.exist?(path)
 
+  data = JSON.parse(File.read(path))
   data['active'] = false
-  data[:active] = false if data.respond_to?(:key?) && data.key?(:active)
 
-  save_eventer(project, '', data)
+  File.write(path, JSON.pretty_generate(data))
 
-  reloaded = load_eventer(project, '')
-
-  {
-    status: 'ok',
-    project: project,
-    active: reloaded['active']
-  }.to_json
+  { status: 'ok', project: project, active: false }.to_json
 end
-
 
 
 
