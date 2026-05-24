@@ -477,8 +477,8 @@ document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'ArrowDown') { e.preventDefault(); moveProjectInOrder(1); return }
     if (e.key === 'ArrowUp') { e.preventDefault(); moveProjectSelection(-1); return }
     if (e.key === 'ArrowDown') { e.preventDefault(); moveProjectSelection(1); return }
-    if (e.key === 'Enter') { e.preventDefault(); editSelectedProject(); return }
-    if (e.key === 'ArrowRight') { e.preventDefault(); openSelectedProject(); return }
+    if (e.key === 'Enter') { e.preventDefault(); openSelectedProject(); return }
+    if (e.key === 'ArrowRight') { e.preventDefault(); editSelectedProject(); return }
     if (e.key === 'n') { e.preventDefault(); createProject(); return }
     if (e.key === 'Delete') { e.preventDefault(); deleteSelectedProject(); return }
     return
