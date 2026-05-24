@@ -16,18 +16,19 @@
       "type": "",
       "duration": null,
       "file": "",
-      "child": "",
-      "childHasEvents": false
-    }
-  ],
-  "project": "digestmd5",
-  "path": "",
-  "parentPath": "",
-  "breadcrumbs": [
+      "child": ""
+    },
     {
-      "label": "digestmd5",
-      "path": ""
+      "id": "cb372c56-c646-41f3-95c0-f930f48235b1",
+      "text": "Pour voir",
+      "brins": [],
+      "persos": [],
+      "checked": false,
+      "state": "---",
+      "type": "",
+      "duration": null,
+      "file": "",
+      "child": ""
     }
-  ],
-  "active": false
+  ]
 }

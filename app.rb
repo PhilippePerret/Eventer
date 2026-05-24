@@ -306,11 +306,14 @@ delete '/projects/:project' do
   content_type :json
 
   project = safe_project_name(params[:project])
+  path = eventer_file(project, '')
 
-  data = load_eventer(project, '')
+  halt 404, { error: 'Project not found' }.to_json unless File.exist?(path)
+
+  data = JSON.parse(File.read(path))
   data['active'] = false
 
-  save_eventer(project, '', data)
+  File.write(path, JSON.pretty_generate(data))
 
   { status: 'ok', project: project, active: false }.to_json
 end
