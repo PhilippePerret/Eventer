@@ -99,7 +99,7 @@ async function renderProjects(preserveSelection = false) {
     file.className = 'project-file'
     file.textContent = project.file
 
-    button.append(name, file)
+    button.append(name, ' ', file)
     button.addEventListener('click', () => {
       selectedProjectIndex = index
       renderProjectSelection()
@@ -145,12 +145,13 @@ async function createProject() {
   if (!response.ok) return
 
   const data = await response.json()
-  await renderProjects(false)
-
+  await renderProjects(true)
   const createdId = data.id || data.project
   const index = projectsList.findIndex(project => project.id === createdId)
-  selectedProjectIndex = index >= 0 ? index : Math.max(0, projectsList.length - 1)
-  renderProjectSelection()
+  if (index >= 0) {
+    selectedProjectIndex = index
+    renderProjectSelection()
+  }
 }
 
 let lastDeletedProject = null
@@ -168,8 +169,7 @@ async function deleteSelectedProject() {
   lastDeletedProject = project
   projectsList.splice(selectedProjectIndex, 1)
   if (selectedProjectIndex >= projectsList.length) selectedProjectIndex = Math.max(0, projectsList.length - 1)
-
-  renderProjectsFromList()
+  await renderProjects(true)
 
   const undo = document.querySelector('#project-undo-delete')
   if (undo) undo.classList.remove('hidden')
@@ -238,7 +238,7 @@ function renderProjectsFromList() {
     file.className = 'project-file'
     file.textContent = project.file
 
-    button.append(name, file)
+    button.append(name, ' ', file)
     button.addEventListener('click', () => {
       selectedProjectIndex = index
       renderProjectSelection()
