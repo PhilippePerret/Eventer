@@ -12,19 +12,10 @@
 # Error details
 
 ```
-Error: expect(locator).toHaveCount(expected) failed
+Error: expect(received).toBe(expected) // Object.is equality
 
-Locator:  locator('.project-item')
-Expected: 7
-Received: 8
-Timeout:  5000ms
-
-Call log:
-  - Expect "toHaveCount" with timeout 5000ms
-  - waiting for locator('.project-item')
-    14 × locator resolved to 8 elements
-       - unexpected value "8"
-
+Expected: false
+Received: true
 ```
 
 # Page snapshot
@@ -34,12 +25,12 @@ Call log:
   - main [ref=e2]:
     - heading "Choisir un évènemencier" [level=1] [ref=e3]
     - generic [ref=e4]:
-      - button "project-1779597633 project-1779597633.json" [ref=e5]:
-        - generic [ref=e6]: project-1779597633
-        - generic [ref=e7]: project-1779597633.json
-      - button "project-1779598203 project-1779598203.json" [ref=e8]:
-        - generic [ref=e9]: project-1779598203
-        - generic [ref=e10]: project-1779598203.json
+      - button "project-1779598550345 project-1779598550345.json" [ref=e5]:
+        - generic [ref=e6]: project-1779598550345
+        - generic [ref=e7]: project-1779598550345.json
+      - button "project-1779598550450 project-1779598550450.json" [ref=e8]:
+        - generic [ref=e9]: project-1779598550450
+        - generic [ref=e10]: project-1779598550450.json
       - button "E2E __e2e__.json" [ref=e11]:
         - generic [ref=e12]: E2E
         - generic [ref=e13]: __e2e__.json
@@ -58,24 +49,28 @@ Call log:
       - button "projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e26]:
         - generic [ref=e27]: projet-20260524-062633-2projet-20260524-062633-2
         - generic [ref=e28]: projet-20260524-062633-2projet-20260524-062633-2.json
-  - contentinfo "Raccourcis clavier" [ref=e29]:
-    - generic [ref=e30]:
-      - generic [ref=e31]: ↑ ↓
-      - text: choisir
-    - generic [ref=e32]:
-      - generic [ref=e33]: Entrée
-      - text: ouvrir
+      - button "projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2 projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json" [ref=e29]:
+        - generic [ref=e30]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2
+        - generic [ref=e31]: projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2projet-20260524-062633-2.json
+    - button "Annuler" [ref=e32] [cursor=pointer]
+  - contentinfo "Raccourcis clavier" [ref=e33]:
     - generic [ref=e34]:
-      - generic [ref=e35]: "n"
-      - text: nouveau projet
+      - generic [ref=e35]: ↑ ↓
+      - text: choisir
     - generic [ref=e36]:
-      - generic [ref=e37]: ⌘↑ ⌘↓
-      - text: classer
+      - generic [ref=e37]: Entrée
+      - text: ouvrir
     - generic [ref=e38]:
-      - generic [ref=e39]: ⌦
-      - text: supprimer
+      - generic [ref=e39]: "n"
+      - text: nouveau projet
     - generic [ref=e40]:
-      - generic [ref=e41]: →
+      - generic [ref=e41]: ⌘↑ ⌘↓
+      - text: classer
+    - generic [ref=e42]:
+      - generic [ref=e43]: ⌦
+      - text: supprimer
+    - generic [ref=e44]:
+      - generic [ref=e45]: →
       - text: éditer
 ```
 
@@ -96,14 +91,14 @@ Call log:
   12 | 
   13 |   await page.keyboard.press('Delete')
   14 | 
-> 15 |   await expect(page.locator('.project-item')).toHaveCount(countBefore - 1)
-     |                                               ^ Error: expect(locator).toHaveCount(expected) failed
+  15 |   await expect(page.locator('.project-item')).toHaveCount(countBefore - 1)
   16 | 
   17 |   const response = await request.get(`/events?project=${projectName.replace(/\.json$/, '')}`)
   18 |   expect(response.ok()).toBeTruthy()
   19 | 
   20 |   const data = await response.json()
-  21 |   expect(data.active).toBe(false)
+> 21 |   expect(data.active).toBe(false)
+     |                       ^ Error: expect(received).toBe(expected) // Object.is equality
   22 | })
   23 | 
 ```

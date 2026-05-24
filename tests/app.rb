@@ -88,21 +88,6 @@ helpers do
     end
   end
 
-  def default_event
-    {
-      'id' => SecureRandom.uuid,
-      'text' => '',
-      'brins' => [],
-      'persos' => [],
-      'checked' => false,
-      'state' => '---',
-      'type' => '',
-      'duration' => nil,
-      'file' => '',
-      'child' => ''
-    }
-  end
-
   def default_data(title = '')
     {
       title: title,
@@ -134,12 +119,21 @@ helpers do
   end
 
   def ensure_eventer_has_event(data)
-    return data if data['active'] == false || data[:active] == false
-
     data['evenements'] ||= data[:evenements] || []
     return data unless data['evenements'].empty?
 
-    data['evenements'] << default_event
+    data['evenements'] << {
+      'id' => SecureRandom.uuid,
+      'text' => '',
+      'brins' => [],
+      'persos' => [],
+      'checked' => false,
+      'state' => '---',
+      'type' => '',
+      'duration' => nil,
+      'file' => '',
+      'child' => ''
+    }
     data
   end
 
@@ -248,19 +242,12 @@ end
 
 post '/projects' do
   request.body.rewind
-  body = request.body.read
-  payload = JSON.parse(body.empty? ? '{}' : body) rescue {}
+  payload = JSON.parse(request.body.read)
 
   base = payload['name'].to_s.strip
-  base = "project-#{(Time.now.to_f * 1000).to_i}" if base.empty?
-  base = safe_project_name(base)
+  base = "project-#{Time.now.to_i}" if base.empty?
 
-  project = base
-  counter = 1
-  while File.exist?(project_root_file(project))
-    project = safe_project_name("#{base}-#{counter}")
-    counter += 1
-  end
+  project = safe_project_name(base)
 
   save_eventer(project, [], default_data(project))
   FileUtils.mkdir_p(project_root_dir(project))
@@ -273,25 +260,8 @@ post '/projects' do
 
   {
     status: 'ok',
-    project: project,
-    id: project,
-    file: "#{project}.json",
-    title: project
+    project: project
   }.to_json
-end
-
-patch '/projects/:project' do
-  project = safe_project_name(params[:project])
-  request.body.rewind
-  body = request.body.read
-  payload = JSON.parse(body.empty? ? '{}' : body) rescue {}
-
-  data = load_eventer(project)
-  data['active'] = payload['active'] unless payload['active'].nil?
-  data['title'] = payload['title'].to_s unless payload['title'].nil?
-  save_eventer(project, [], data)
-
-  { status: 'ok', project: project }.to_json
 end
 
 delete '/projects/:project' do
@@ -302,20 +272,6 @@ delete '/projects/:project' do
   save_eventer(project, [], data)
 
   { status: 'ok', project: project }.to_json
-end
-
-post '/projects/order' do
-  request.body.rewind
-  body = request.body.read
-  payload = JSON.parse(body.empty? ? '{}' : body) rescue {}
-
-  order = payload['order'] || []
-
-  state = load_state
-  state['projectOrder'] = order
-  save_state(state)
-
-  { status: 'ok' }.to_json
 end
 
 post '/projects/reorder' do
@@ -335,13 +291,7 @@ end
 get '/events' do
   project = safe_project_name(params[:project] || DEFAULT_PROJECT)
   child_path = safe_child_path(params[:path] || '')
-
-  data = ensure_eventer_has_event(load_eventer(project, child_path))
-  if data['active'] != false && (data['evenements'] || []).length == 1 && (data['evenements'][0]['text'] || '').to_s.empty?
-    save_eventer(project, child_path, data)
-  end
-
-  data = annotate_child_flags(project, child_path, data)
+  data = annotate_child_flags(project, child_path, load_eventer(project, child_path))
 
   data.merge(
     'project' => project,

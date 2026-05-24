@@ -146,7 +146,8 @@ async function createProject() {
 
   const data = await response.json()
   await renderProjects(true)
-  const index = projectsList.findIndex(project => project.id === data.project?.id)
+  const createdId = data.id || data.project
+  const index = projectsList.findIndex(project => project.id === createdId)
   if (index >= 0) {
     selectedProjectIndex = index
     renderProjectSelection()
@@ -160,9 +161,7 @@ async function deleteSelectedProject() {
   if (!project) return
 
   const response = await fetch(`/projects/${encodeURIComponent(project.id)}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ active: false })
+    method: 'DELETE'
   })
 
   if (!response.ok) return
